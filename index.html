@@ -1,7 +1,21 @@
-<html>
-  <body>
-    <h1>Controle Servo Motor</h1>
-    <button onclick="location.href='/moveServoUp'">Aumentar 180°</button><br><br>
-    <button onclick="location.href='/moveServoDown'">Diminuir 180°</button>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Lixeira</title>
+</head>
+<body>
+    <h1>Controle de Lixeira Automatizada</h1>
+    <button id="organico" onclick="enviarComando('organico')">Orgânico</button>
+    <button id="reciclavel" onclick="enviarComando('reciclavel')">Reciclável</button>
+
+    <script>
+        function enviarComando(tipo) {
+            fetch(`http://<ENDEREÇO_IP_DO_ESP32>/${tipo}`)
+                .then(response => console.log(`Botão ${tipo} pressionado`))
+                .catch(error => console.error('Erro:', error));
+        }
+    </script>
+</body>
 </html>
